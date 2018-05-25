@@ -1,0 +1,69 @@
+<html>
+<head>
+  <title>Notebook</title>
+  <!-- Icons & Stylesheets -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Include the library in the page -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/marked"></script>
+  <script src="https://unpkg.com/moment"></script>
+
+  <!-- Notebook app -->
+  <div id="notebook">
+
+    <aside class="side-bar">
+        <div class="toolbar">
+            <button @click="addNote" :title="notes.length + ' note(s) alredy'">
+                <i class="material-icons">add</i>
+                Add Note
+            </button>
+            <div class="notes">
+                <div class="note" v-for="note in sortedNotes" 
+                    :class="{selected: note === selectedNote}"
+                    @click="selectNote(note)">
+                        <i class="icon material-icons" 
+                            v-if="note.favorite">star</i>
+                        {{note.title}}
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <template v-if="selectedNote">
+        <section class="main">
+            <div class="toolbar">
+                <input v-model="selectedNote.title" placeholder="Note title" />
+                <button @click="favoriteNote" title="Favorite Note">
+                    <i class="material-icons">
+                        {{ selectedNote.favorite ? 'star' : 'star_border'}}
+                    </i>
+                </button>
+                <button @click="removeNote" title="Remove note">
+                    <i class="material-icons">delete</i>
+                </button>
+            </div>
+
+            <textarea v-model="selectedNote.content"></textarea>
+
+            <div class="toolbar status-bar">
+                <span class="date">
+                    <span class="label">Create</span>
+                    <span class="value"> {{selectedNote.created}} </span>
+                </span>
+            </div>
+        </section>
+
+        <aside class="preview" v-html="notePreview">
+            
+        </aside>
+    </template>
+
+  </div>
+
+  <!-- Some JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
