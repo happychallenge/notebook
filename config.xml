@@ -18,12 +18,12 @@
        under the License.
 -->
 <widget id="io.cordova.helloCordova" version="2.0.0" xmlns="http://www.w3.org/ns/widgets">
-    <name>Hello Cordova</name>
+    <name>Markdown Notebook</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Markdown Notebook that responds to the deviceready event.
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+        NAMJU
     </author>
     <access origin="*.apache.org" />
     <access origin="http://*.google.com/*" />
